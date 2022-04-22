@@ -4,15 +4,31 @@ import Game.Question;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
-public class Seriallization implements Serializable {
+public class SerializationQuestions implements Serializable {
+
+    public Question readQuestionByCategory(int category, int randNumb)
+            throws IOException, ClassNotFoundException{
+        List<Question> fullQuestionList = new ArrayList<>();
+
+        FileInputStream fileInputStream = new FileInputStream("questionsDB.txt");
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        fullQuestionList = (ArrayList<Question>) objectInputStream.readObject();
+        objectInputStream.close();
+//      FILTRAR fullQuestionList en base a la categoria
+        //Filtrar
+
+//        for (int i = 0; i < q3.size(); i++) {
+//            System.out.println(q3.get(i).toString());
+//        }
+        return null;
+    }
 
     public void savingData()
             throws IOException, ClassNotFoundException {
-        List<Question> lstQuestion = new ArrayList<Question>();
+        List<Question> lstQuestion = new ArrayList<>();
 
         lstQuestion.add(new Question("About what percentage of the Earth's surface is water?", 4, new String[]{"1. 15%", "2. 20%", "3. 8%", "4. 70%"}, 1));
         lstQuestion.add(new Question("What is the capital of Antioquia, Colombia?", 3, new String[]{"1. Apartadó", "2. Tunja", "3. Medellín", "4. Bogotá"}, 1));
@@ -40,36 +56,13 @@ public class Seriallization implements Serializable {
         lstQuestion.add(new Question("How many time zones does Russia have?", 4, new String[]{"1. 7", "2. 8", "3. 13", "4. 11"}, 5));
         lstQuestion.add(new Question("Approximately how many kilometers long is the Andes mountain range?", 2, new String[]{"1. 3500", "2. 7000", "3. 12000", "4. 16000"}, 5));
 
-        FileOutputStream fileOutputStream = new FileOutputStream("yourfile.txt");
+        FileOutputStream fileOutputStream = new FileOutputStream("questionsDB.txt");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(lstQuestion);
         objectOutputStream.flush();
         objectOutputStream.close();
 
-        FileInputStream fileInputStream = new FileInputStream("yourfile.txt");
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-        Question q3 = (Question) objectInputStream.readObject();
-        objectInputStream.close();
-//
-        //Lucho dice filtrar con ORM -> Hibernate
-//        System.out.println(q3.getOptions());
-//        System.out.println(q3.getOptions()[0]);
-        for (int i = 0; i < q3.getOptions().length; i++) {
-            System.out.println(q3.getOptions()[i]);
-        }
 
-
-//        assertTrue(p2.getAge() == person.getAge());
-//        assertTrue(p2.getName().equals(person.getName()));
     }
 }
-//    Question q1 = new Question("About what percentage of the Earth's surface is water?", "70%", "15%, 20%, 8%, 70%", 1);
-//    Question q2 = new Question("What is the capital of Antioquia, Colombia?", "Medellín", "Apartadó, Tunja, Medellín, Bogotá", 1);
-//
-//    FileOutputStream fileOutputStream = new FileOutputStream("yourfile.txt");
-//    ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-//    objectOutputStream.writeObject(person);
-//    objectOutputStream.flush();
-//    objectOutputStream.close();
-//
-//}
+

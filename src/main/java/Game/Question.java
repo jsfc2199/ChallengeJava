@@ -32,7 +32,12 @@ public class Question implements Serializable {
     @Override
     public String toString() {
         return "Question{" +
-                "options=" + Arrays.toString(options) +
+                "question='" + question + '\'' +
+                ", answer=" + answer +
+                ", options='" + options.toString() + '\'' +
+                ", category=" + category +
                 '}';
     }
+
+
 }
