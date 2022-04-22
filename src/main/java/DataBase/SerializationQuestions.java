@@ -9,22 +9,22 @@ import java.util.List;
 
 public class SerializationQuestions implements Serializable {
 
-    public Question readQuestionByCategory(int category, int randNumb)
-            throws IOException, ClassNotFoundException{
-        List<Question> fullQuestionList = new ArrayList<>();
-
-        FileInputStream fileInputStream = new FileInputStream("questionsDB.txt");
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-        fullQuestionList = (ArrayList<Question>) objectInputStream.readObject();
-        objectInputStream.close();
-//      FILTRAR fullQuestionList en base a la categoria
-        //Filtrar
-
-//        for (int i = 0; i < q3.size(); i++) {
-//            System.out.println(q3.get(i).toString());
-//        }
-        return null;
-    }
+//    public Question readQuestionByCategory(int category, int randNumb)
+//            throws IOException, ClassNotFoundException{
+//        List<Question> fullQuestionList = new ArrayList<>();
+//
+//        FileInputStream fileInputStream = new FileInputStream("questionsDB.txt");
+//        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+//        fullQuestionList = (ArrayList<Question>) objectInputStream.readObject();
+//        objectInputStream.close();
+////      FILTRAR fullQuestionList en base a la categoria
+//        //Filtrar
+//
+////        for (int i = 0; i < q3.size(); i++) {
+////            System.out.println(q3.get(i).toString());
+////        }
+//        return null;
+//    }
 
     public void savingData()
             throws IOException, ClassNotFoundException {
@@ -62,7 +62,14 @@ public class SerializationQuestions implements Serializable {
         objectOutputStream.flush();
         objectOutputStream.close();
 
-
+//        FileInputStream fileInputStream = new FileInputStream("questionsDB.txt");
+//        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+//        ArrayList<Question> fullQuestionList = (ArrayList<Question>) objectInputStream.readObject();
+//        objectInputStream.close();
+//
+//        for (int i = 0; i < fullQuestionList.size(); i++) {
+//            System.out.println(fullQuestionList.get(i).toString());
+//        }
     }
 }
 
