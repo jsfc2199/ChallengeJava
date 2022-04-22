@@ -1,32 +1,20 @@
 package Main;
 
-import Game.Player;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import Game.IntroductionQuestion;
+import Game.Player;
 
 public class Main {
     public static void main(String[] args) {
-        Player player = new Player("Juan", 0);
+        Player player = new Player("juan",0);
 
-        //System.out.println(player.getName());
-        HashMap borrar = new HashMap();
-        ArrayList borrar2 = new ArrayList();
-        borrar2.add(15);
-        borrar2.add(15);
-        borrar2.add(15);
-        borrar2.add(15);
+        int[] victorias = {0, 500, 1000, 10000, 45000, 100000};
+        String[] categorias = {"Arte y Cine", "Matemáticas", "Deportes", "Música", "Ciencia"};
+        int puntaje = 0;
 
-        //System.out.println(borrar2);
 
-        borrar.put("option",borrar2);
-
-        Object[] opciones = borrar.values().toArray();
-        for (Object o : borrar.values().toArray()) {
-            System.out.println(o.getClass());
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(IntroductionQuestion.introduction(i,victorias[i]));
         }
-
-        //System.out.println();
-
     }
 }
