@@ -5,5 +5,5 @@ import Model.mdlQuestion;
 import java.util.List;
 
 public interface IQuestion {
-    List<mdlQuestion> fncGetQuestionByCategory();
+    List<mdlQuestion> fncGetQuestionByCategory(Integer category);
 }
