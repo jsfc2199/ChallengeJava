@@ -11,15 +11,15 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class clsQuestion implements IQuestion {
 
     @Override
-    public List<mdlQuestion> fncGetQuestionByCategory() {
+    public List<mdlQuestion> fncGetQuestionByCategory(Integer category) {
 
         ObjectMapper objectMapper = new ObjectMapper ();
-
-        List<mdlQuestion> lstMdlQuestion = new ArrayList<mdlQuestion>();
+        List<mdlQuestion> lstMdlQuestion = new ArrayList<>();
 
         URL resource = clsQuestion.class.getClassLoader().getResource( "QuestionsDB.json");
         byte[] bytes = new byte[0];
@@ -41,6 +41,14 @@ public class clsQuestion implements IQuestion {
             e.printStackTrace();
         }
 
-        return lstMdlQuestion;
+        return fncFilterQuestions(lstMdlQuestion, category);
+    }
+
+    private List<mdlQuestion> fncFilterQuestions(List<mdlQuestion> lstMdlQuestion, Integer category){
+        List<mdlQuestion> lstFilteredQuestions = new ArrayList<>();
+
+        lstFilteredQuestions = lstMdlQuestion.stream().filter( question -> question.category == category).collect(Collectors.toList());
+
+        return lstFilteredQuestions;
     }
 }
