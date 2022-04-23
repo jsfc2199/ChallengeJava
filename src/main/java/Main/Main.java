@@ -23,7 +23,7 @@ public class Main {
         }
 
         int score = 0; //variable temporal
-        
+
         //TODO: refactorizar porque si "funciona", si es true sumar a un acumulador el premio
         if(validateAnswer(question.answer)){
             score+= question.reward; //sumará al valor a score para el puntaje final
