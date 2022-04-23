@@ -1,8 +1,6 @@
 
 ?
 settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
-b
-2src/main/java/BusinessRule/Question/IQuestion.java,6\4\64edb6fb72d24d4b29b64e59b93a9593fc7874e6
 N
 src/main/java/Game/Player.java,c\8\c88ace90118d42fea80eb8211c96d42e123395d2
 \
@@ -15,8 +13,6 @@ $src/main/java/Model/mdlQuestion.java,a\5\a58d6be14da40bf98c530f85e4a21692dd309
 ,src/main/java/Broker/Question/IQuestion.java,b\f\bff48b5c3ac3413abf3465ddc5b0fc165422d0d9
 R
 "src/main/java/Model/mdlPlayer.java,c\f\cf6b5d85c9238915b525835d36ec0df7fb8beda2
-d
-4src/main/java/BusinessRule/Question/clsQuestion.java,4\3\435549bd785b7052997d30765ecdbbe0a5fd1674
 ^
 .src/main/java/BusinessRule/Player/IPlayer.java,8\9\89bc9ba0088b0774a337705f694a64d9478696d7
 Z

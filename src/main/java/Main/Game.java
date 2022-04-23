@@ -1,6 +1,6 @@
 package Main;
 
-import Broker.Question.brkQuestion;
+import BusinessRule.Question.clsQuestion;
 import BusinessRule.Player.clsPlayer;
 import Model.mdlPlayer;
 import Model.mdlQuestion;
@@ -47,7 +47,7 @@ public class Game {
         if (validateAnswer(question.answer, userAnswer)) {
             score += question.reward;
             if (i == 5) {
-                quitGame(("Congratulations, you did very well, and you won " + score), score);
+                quitGame(("Congratulations, you did very well, your score is: " + score), score);
             }
         } else {
             System.out.println("Game Over. You lose\n");
@@ -55,8 +55,8 @@ public class Game {
     }
 
     private static mdlQuestion getRandomQuestion(int category) {
-        brkQuestion objQuestion = new brkQuestion();
-        List<mdlQuestion> objMdlQuestion = objQuestion.getQuestionByCategory(category);
+        clsQuestion objClsQuestion = new clsQuestion();
+        List<mdlQuestion> objMdlQuestion = objClsQuestion.getQuestionByCategory(category);
 
         int random = (int) Math.floor(Math.random() * 5);
         mdlQuestion question = objMdlQuestion.get(random);
@@ -102,14 +102,10 @@ public class Game {
     }
 
     public static void printRanking(){
-        List<mdlPlayer> lstMdlPlayer = getRankingPlayers();
+        clsPlayer objClsPlayer = new clsPlayer();
+        List<mdlPlayer> lstMdlPlayer = objClsPlayer.getRankingPlayers();
         for (int i = 0; i < lstMdlPlayer.size(); i++) {
             System.out.println(lstMdlPlayer.get(i).name + " " + lstMdlPlayer.get(i).score);
         }
-    }
-
-    public static List<mdlPlayer> getRankingPlayers(){
-        clsPlayer objClsPlayer = new clsPlayer();
-        return objClsPlayer.getRankingPlayers();
     }
 }
