@@ -2,11 +2,11 @@ package Main;
 
 public class Main {
     public static void main(String[] args) {
-
         boolean play = true;
         while (play){
             switch (Game.mainMenu()){
                 case 0:
+                    System.out.println("Take care!");
                     play = false;
                     break;
                 case 1:

@@ -10,7 +10,8 @@ import java.util.Scanner;
 
 public class Game {
 
-    static Scanner scanner = new Scanner(System.in);
+    static private Scanner scanner = new Scanner(System.in);
+    static private int score = 0;
 
     public static Integer mainMenu(){
         System.out.println(
@@ -22,19 +23,25 @@ public class Game {
     }
 
     public static void playGame(){
-        int score = 0;
+        boolean playing = true;
+        int i = 1;
 
-        for (int i = 1; i <= 5; i++) {
+        while (playing && i<=5) {
             mdlQuestion question = getRandomQuestion(i);
             System.out.println("Please, select an option.");
             int userAnswer = scanner.nextInt();
 
             switch (userAnswer){
                 case 0:
-                    quitGame(("You gave up, your score is " + score), score);
+                    quitGame(("You gave up, your score is " + score));
+                    playing = false;
                     break;
-                case 1,2,3,4:
-                    keepPlaying(question, userAnswer, score, i);
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    playing = keepPlaying(question, userAnswer-1, i);
+                    i++;
                     break;
                 default:
                     System.out.println("Please select a valid option");
@@ -43,15 +50,17 @@ public class Game {
         }
     }
 
-    private static void keepPlaying(mdlQuestion question, int userAnswer, int score, int i){
+    private static boolean keepPlaying(mdlQuestion question, int userAnswer, int i){
         if (validateAnswer(question.answer, userAnswer)) {
             score += question.reward;
             if (i == 5) {
-                quitGame(("Congratulations, you did very well, your score is: " + score), score);
+                quitGame(("Congratulations, you did very well, your score is: " + score));
             }
+            return true;
         } else {
             System.out.println("Game Over. You lose\n");
         }
+        return false;
     }
 
     private static mdlQuestion getRandomQuestion(int category) {
@@ -62,10 +71,7 @@ public class Game {
         mdlQuestion question = objMdlQuestion.get(random);
 
         System.out.println(question.question);
-
-        if (question.category != 1) {
-            System.out.println("0. Give up");
-        }
+        System.out.println("0. Give up");
 
         for (int i = 0; i < question.option.length; i++) {
             System.out.println((i + 1) + ". " + question.option[i]);
@@ -74,14 +80,13 @@ public class Game {
         return question;
     }
 
-    private static void quitGame(String message, int score) {
+    private static void quitGame(String message) {
         System.out.println(message);
-        mdlPlayer objMdlPlayer = instantiatePlayer(score);
+        mdlPlayer objMdlPlayer = instantiatePlayer();
         createPlayerBBDD(objMdlPlayer);
-        printRanking();
     }
 
-    private static mdlPlayer instantiatePlayer(int score) {
+    private static mdlPlayer instantiatePlayer() {
         Scanner texto = new Scanner(System.in);
         System.out.println("Please, enter your name");
         String name = texto.nextLine();

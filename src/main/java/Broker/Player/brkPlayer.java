@@ -13,7 +13,9 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class brkPlayer implements IPlayer {
     @Override
@@ -48,7 +50,6 @@ public class brkPlayer implements IPlayer {
 
             if (node.isArray ()) {
                 for (JsonNode jsonNode : node) {
-                    //String id = jsonNode.get("id").asText();
                     mdlPlayer objMdlPlayer = objectMapper.treeToValue(jsonNode, mdlPlayer.class);
                     lstMdlPlayer.add(objMdlPlayer);
                 }
@@ -59,14 +60,15 @@ public class brkPlayer implements IPlayer {
             e.printStackTrace();
         }
 
-        return lstMdlPlayer;
-//        return fncFilterPlayers(lstMdlPlayer);
+//        return lstMdlPlayer;
+        return fncFilterPlayers(lstMdlPlayer);
     }
 
     private List<mdlPlayer> fncFilterPlayers(List<mdlPlayer> lstMdlPlayer){
         List<mdlPlayer> lstFilteredPlayers = new ArrayList<>();
 
-        //lstFilteredPlayers = lstMdlPlayer.stream().filter( player -> player.category == category).collect(Collectors.toList());
+        lstFilteredPlayers = lstMdlPlayer.stream().sorted(Comparator.comparing(mdlPlayer::getScore).reversed()).collect(Collectors.toList());
+//        lstFilteredPlayers = lstMdlPlayer.stream().filter( player -> player.score == category).collect(Collectors.toList());
 
         return lstFilteredPlayers;
     }

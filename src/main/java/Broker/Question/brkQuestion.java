@@ -29,7 +29,6 @@ public class brkQuestion implements IQuestion {
 
             if (node.isArray ()) {
                 for (JsonNode jsonNode : node) {
-                    //String id = jsonNode.get("id").asText();
                     mdlQuestion objMdlQuestion = objectMapper.treeToValue(jsonNode, mdlQuestion.class);
                     lstMdlQuestion.add(objMdlQuestion);
                 }

@@ -1,9 +1,0 @@
-
-m
-java:S1104"PMake name a static final constant or non-public and provide accessors if needed.( þÍ¾8Àëð–…0
-n
-java:S1104"QMake score a static final constant or non-public and provide accessors if needed.(¥ÛÙä8¿†ñ–…0
-b	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ï°°À
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(á–Ì“
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8—‚Í˜…0

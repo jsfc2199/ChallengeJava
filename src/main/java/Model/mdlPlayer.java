@@ -1,8 +1,6 @@
 package Model;
 
-import java.util.List;
-
-public class mdlPlayer{
+public class mdlPlayer extends mdlPerson{
     public String name;
     public Integer score;
 
@@ -10,7 +8,11 @@ public class mdlPlayer{
     }
 
     public mdlPlayer(String name, Integer score) {
-        this.name = name;
+        super.name = name;
         this.score = score;
+    }
+
+    public Integer getScore(){
+        return score;
     }
 }
