@@ -1,6 +1,6 @@
 package Main;
 
-import Broker.Question.clsQuestion;
+import Broker.Question.brkQuestion;
 import BusinessRule.Player.clsPlayer;
 import Model.mdlPlayer;
 import Model.mdlQuestion;
@@ -35,8 +35,8 @@ public class Main {
     }
 
     public static mdlQuestion getRandomQuestion(int category) {
-        clsQuestion objQuestion = new clsQuestion();
-        List<mdlQuestion> objMdlQuestion = objQuestion.fncGetQuestionByCategory(category); //pasar categoria ciclo for 1 - 5
+        brkQuestion objQuestion = new brkQuestion();
+        List<mdlQuestion> objMdlQuestion = objQuestion.getQuestionByCategory(category);
         int random = (int) Math.floor(Math.random() * 5);
         mdlQuestion question = objMdlQuestion.get(random);
 
@@ -53,7 +53,6 @@ public class Main {
         return question;
     }
 
-    //al final, si gana o si se retira
     public static mdlPlayer instantiatePlayer(int score) {
         Scanner texto = new Scanner(System.in);
         System.out.println("Please, enter your name");
@@ -62,9 +61,7 @@ public class Main {
         return objMdlPlayer;
 
     }
-    //TODO: METODO QUE RECIBA LA VALIDACION DE LA PREGUNTA PARA PODER CONTINUAR CON EL JUEGO
 
-    //valida la respuesta correcta y retorna un booleano
     public static boolean validateAnswer(int answer, int userAnswer) {
         if (userAnswer == answer) {
             return true;
@@ -72,20 +69,30 @@ public class Main {
         return false;
     }
 
-    //guarda en objeto en el Json
-    public static void savePlayerBBDD(mdlPlayer player) {
+    public static void createPlayerBBDD(mdlPlayer player) {
         clsPlayer objClsPlayer = new clsPlayer();
-        objClsPlayer.fncCreatePlayer(player);
+        objClsPlayer.createPlayerBBDD(player);
     }
 
     public static void quitGame(String message, int score) {
         System.out.println(message);
         mdlPlayer objMdlPlayer = instantiatePlayer(score);
-        savePlayerBBDD(objMdlPlayer);
+        createPlayerBBDD(objMdlPlayer);
+        showRankingPlayers(getRankingPlayers());
+    }
+
+    public static void showRankingPlayers(List<mdlPlayer> lstMdlPlayer){
+        for (int i = 0; i < lstMdlPlayer.size(); i++) {
+            System.out.println(lstMdlPlayer.get(i).name + " " + lstMdlPlayer.get(i).score);
+        }
     }
 
     public static void gameOver(String messsage) {
         System.out.println(messsage);
     }
 
+    public static List<mdlPlayer> getRankingPlayers(){
+        clsPlayer objClsPlayer = new clsPlayer();
+        return objClsPlayer.getRankingPlayers();
+    }
 }

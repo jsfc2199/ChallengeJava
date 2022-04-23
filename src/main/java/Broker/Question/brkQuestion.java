@@ -13,15 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class clsQuestion implements IQuestion {
+public class brkQuestion implements IQuestion {
 
     @Override
-    public List<mdlQuestion> fncGetQuestionByCategory(Integer category) {
-
+    public List<mdlQuestion> getQuestionByCategory(Integer category) {
         ObjectMapper objectMapper = new ObjectMapper ();
         List<mdlQuestion> lstMdlQuestion = new ArrayList<>();
 
-        URL resource = clsQuestion.class.getClassLoader().getResource( "QuestionsDB.json");
+        URL resource = brkQuestion.class.getClassLoader().getResource( "QuestionsDB.json");
         byte[] bytes = new byte[0];
         try {
             bytes = Files.readAllBytes(Paths.get(resource.toURI()));
@@ -30,7 +29,7 @@ public class clsQuestion implements IQuestion {
 
             if (node.isArray ()) {
                 for (JsonNode jsonNode : node) {
-                    String id = jsonNode.get("id").asText();
+                    //String id = jsonNode.get("id").asText();
                     mdlQuestion objMdlQuestion = objectMapper.treeToValue(jsonNode, mdlQuestion.class);
                     lstMdlQuestion.add(objMdlQuestion);
                 }
