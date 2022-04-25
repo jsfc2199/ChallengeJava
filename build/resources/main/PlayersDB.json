@@ -1,1 +1,18 @@
-[{"name":"Felipe","score":5000},{"name":"Juan","score":400},{"name":"Daniela","score":7700},{"name":"Miguel","score":2700}]
+[
+  {
+    "name": "Felipe",
+    "score": 5000
+  },
+  {
+    "name": "Juan",
+    "score": 400
+  },
+  {
+    "name": "Daniela",
+    "score": 7700
+  },
+  {
+    "name": "Miguel",
+    "score": 2700
+  }
+]

@@ -4,6 +4,6 @@ import Model.mdlPlayer;
 import java.util.List;
 
 public interface IClsPlayer {
-    void createPlayerDDBB(mdlPlayer objMdlPlayer);
+    void createPlayer(mdlPlayer objMdlPlayer);
     List<mdlPlayer> getRankingPlayers();
 }

@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 
 public class clsPlayer implements IClsPlayer {
     @Override
-    public void createPlayerDDBB(mdlPlayer objMdlPlayer) {
+    public void createPlayer(mdlPlayer objMdlPlayer) {
         IBrkPlayer objBrkPlayer = new brkPlayer();
-        objBrkPlayer.createPlayerBBDD(objMdlPlayer);
+        objBrkPlayer.createPlayer(objMdlPlayer);
     }
 
     @Override

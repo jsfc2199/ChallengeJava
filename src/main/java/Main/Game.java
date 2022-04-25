@@ -72,7 +72,7 @@ public class Game {
     private static void quitGame(String message) {
         System.out.println(message);
         mdlPlayer objMdlPlayer = instantiatePlayer();
-        createPlayerBBDD(objMdlPlayer);
+        createPlayer(objMdlPlayer);
         score = 0;
     }
 
@@ -108,16 +108,17 @@ public class Game {
         return objMdlPlayer;
     }
 
-    private static void createPlayerBBDD(mdlPlayer player) {
+    private static void createPlayer(mdlPlayer player) {
         IClsPlayer objClsPlayer = new clsPlayer();
-        objClsPlayer.createPlayerDDBB(player);
+        objClsPlayer.createPlayer(player);
     }
 
     public static void printRanking(){
         IClsPlayer objClsPlayer = new clsPlayer();
         List<mdlPlayer> lstMdlPlayer = objClsPlayer.getRankingPlayers();
+        System.out.println("");
         for (int i = 0; i < lstMdlPlayer.size(); i++) {
-            System.out.println(lstMdlPlayer.get(i).name + " " + lstMdlPlayer.get(i).score);
+            System.out.println(i+1 + "." + lstMdlPlayer.get(i).name + " " + lstMdlPlayer.get(i).score);
         }
     }
 }

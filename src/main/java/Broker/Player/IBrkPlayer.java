@@ -5,6 +5,6 @@ import Model.mdlPlayer;
 import java.util.List;
 
 public interface IBrkPlayer {
-    void createPlayerBBDD(mdlPlayer objMdlPlayer);
+    void createPlayer(mdlPlayer objMdlPlayer);
     List<mdlPlayer> getPlayers();
 }
