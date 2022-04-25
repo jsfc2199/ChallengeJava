@@ -3,7 +3,7 @@ package BusinessRule.Player;
 import Model.mdlPlayer;
 import java.util.List;
 
-public interface IPlayer {
-    void createPlayerBBDD(mdlPlayer objMdlPlayer);
+public interface IClsPlayer {
+    void createPlayerDDBB(mdlPlayer objMdlPlayer);
     List<mdlPlayer> getRankingPlayers();
 }

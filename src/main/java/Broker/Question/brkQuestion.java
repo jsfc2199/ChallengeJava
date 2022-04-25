@@ -13,15 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class brkQuestion implements IQuestion {
+public class brkQuestion implements IBrkQuestion {
 
     @Override
-    public List<mdlQuestion> getQuestionByCategory(Integer category) {
+    public List<mdlQuestion> getQuestions(Integer category) {
         ObjectMapper objectMapper = new ObjectMapper ();
         List<mdlQuestion> lstMdlQuestion = new ArrayList<>();
 
         URL resource = brkQuestion.class.getClassLoader().getResource( "QuestionsDB.json");
-        byte[] bytes = new byte[0];
+        byte[] bytes;
         try {
             bytes = Files.readAllBytes(Paths.get(resource.toURI()));
             String json = new String(bytes);
@@ -39,14 +39,6 @@ public class brkQuestion implements IQuestion {
             e.printStackTrace();
         }
 
-        return fncFilterQuestions(lstMdlQuestion, category);
-    }
-
-    private List<mdlQuestion> fncFilterQuestions(List<mdlQuestion> lstMdlQuestion, Integer category){
-        List<mdlQuestion> lstFilteredQuestions = new ArrayList<>();
-
-        lstFilteredQuestions = lstMdlQuestion.stream().filter( question -> question.category == category).collect(Collectors.toList());
-
-        return lstFilteredQuestions;
+        return lstMdlQuestion;
     }
 }

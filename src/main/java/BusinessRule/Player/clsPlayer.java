@@ -1,20 +1,27 @@
 package BusinessRule.Player;
 
+import Broker.Player.IBrkPlayer;
 import Broker.Player.brkPlayer;
 import Model.mdlPlayer;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class clsPlayer implements IPlayer {
+public class clsPlayer implements IClsPlayer {
     @Override
-    public void createPlayerBBDD(mdlPlayer objMdlPlayer) {
-        brkPlayer objBrkPlayer = new brkPlayer();
+    public void createPlayerDDBB(mdlPlayer objMdlPlayer) {
+        IBrkPlayer objBrkPlayer = new brkPlayer();
         objBrkPlayer.createPlayerBBDD(objMdlPlayer);
     }
 
     @Override
     public List<mdlPlayer> getRankingPlayers() {
-        brkPlayer objBrkPlayer = new brkPlayer();
-        return objBrkPlayer.getRankingPlayers();
+        IBrkPlayer objBrkPlayer = new brkPlayer();
+        List<mdlPlayer> lstMdlPlayer = objBrkPlayer.getPlayers();
+
+        return lstMdlPlayer.stream()
+                .sorted(Comparator.comparing(mdlPlayer::getScore)
+                        .reversed()).collect(Collectors.toList());
     }
 }

@@ -4,7 +4,7 @@ import Model.mdlPlayer;
 
 import java.util.List;
 
-public interface IPlayer {
+public interface IBrkPlayer {
     void createPlayerBBDD(mdlPlayer objMdlPlayer);
-    List<mdlPlayer> getRankingPlayers();
+    List<mdlPlayer> getPlayers();
 }

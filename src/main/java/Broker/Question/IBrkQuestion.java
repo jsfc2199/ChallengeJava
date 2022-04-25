@@ -4,6 +4,6 @@ import Model.mdlQuestion;
 
 import java.util.List;
 
-public interface IQuestion {
-    List<mdlQuestion> getQuestionByCategory(Integer category);
+public interface IBrkQuestion {
+    List<mdlQuestion> getQuestions(Integer category);
 }

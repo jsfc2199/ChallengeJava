@@ -1,6 +1,6 @@
 package Model;
 
-public class mdlPlayer extends mdlPerson{
+public class mdlPlayer {
     public String name;
     public Integer score;
 
@@ -8,7 +8,7 @@ public class mdlPlayer extends mdlPerson{
     }
 
     public mdlPlayer(String name, Integer score) {
-        super.name = name;
+        this.name = name;
         this.score = score;
     }
 

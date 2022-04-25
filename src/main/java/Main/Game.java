@@ -1,7 +1,9 @@
 package Main;
 
-import BusinessRule.Question.clsQuestion;
+import BusinessRule.Player.IClsPlayer;
 import BusinessRule.Player.clsPlayer;
+import BusinessRule.Question.IClsQuestion;
+import BusinessRule.Question.clsQuestion;
 import Model.mdlPlayer;
 import Model.mdlQuestion;
 
@@ -50,21 +52,8 @@ public class Game {
         }
     }
 
-    private static boolean keepPlaying(mdlQuestion question, int userAnswer, int i){
-        if (validateAnswer(question.answer, userAnswer)) {
-            score += question.reward;
-            if (i == 5) {
-                quitGame(("Congratulations, you did very well, your score is: " + score));
-            }
-            return true;
-        } else {
-            System.out.println("Game Over. You lose\n");
-        }
-        return false;
-    }
-
     private static mdlQuestion getRandomQuestion(int category) {
-        clsQuestion objClsQuestion = new clsQuestion();
+        IClsQuestion objClsQuestion = new clsQuestion();
         List<mdlQuestion> objMdlQuestion = objClsQuestion.getQuestionByCategory(category);
 
         int random = (int) Math.floor(Math.random() * 5);
@@ -84,6 +73,31 @@ public class Game {
         System.out.println(message);
         mdlPlayer objMdlPlayer = instantiatePlayer();
         createPlayerBBDD(objMdlPlayer);
+        score = 0;
+    }
+
+    private static boolean keepPlaying(mdlQuestion question, int userAnswer, int i){
+        if (validateAnswer(question.answer, userAnswer)) {
+            score += question.reward;
+            if (i == 5) {
+                quitGame(("Congratulations, you did very well, your score is: " + score));
+            }
+            return true;
+        }
+        gameOver();
+        return false;
+    }
+
+    private static void gameOver(){
+        System.out.println("Game Over. You lose\n");
+        score = 0;
+    }
+
+    private static boolean validateAnswer(int answer, int userAnswer) {
+        if (userAnswer == answer) {
+            return true;
+        }
+        return false;
     }
 
     private static mdlPlayer instantiatePlayer() {
@@ -94,20 +108,13 @@ public class Game {
         return objMdlPlayer;
     }
 
-    private static boolean validateAnswer(int answer, int userAnswer) {
-        if (userAnswer == answer) {
-            return true;
-        }
-        return false;
-    }
-
     private static void createPlayerBBDD(mdlPlayer player) {
-        clsPlayer objClsPlayer = new clsPlayer();
-        objClsPlayer.createPlayerBBDD(player);
+        IClsPlayer objClsPlayer = new clsPlayer();
+        objClsPlayer.createPlayerDDBB(player);
     }
 
     public static void printRanking(){
-        clsPlayer objClsPlayer = new clsPlayer();
+        IClsPlayer objClsPlayer = new clsPlayer();
         List<mdlPlayer> lstMdlPlayer = objClsPlayer.getRankingPlayers();
         for (int i = 0; i < lstMdlPlayer.size(); i++) {
             System.out.println(lstMdlPlayer.get(i).name + " " + lstMdlPlayer.get(i).score);

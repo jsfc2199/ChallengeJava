@@ -13,15 +13,13 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class brkPlayer implements IPlayer {
+public class brkPlayer implements IBrkPlayer {
     @Override
     public void createPlayerBBDD(mdlPlayer objMdlPlayer) {
 
-        List<mdlPlayer> lstMdlPlayer = getRankingPlayers();
+        List<mdlPlayer> lstMdlPlayer = getPlayers();
         lstMdlPlayer.add(objMdlPlayer);
 
         ObjectMapper mapper = new ObjectMapper();
@@ -37,12 +35,12 @@ public class brkPlayer implements IPlayer {
     }
 
     @Override
-    public List<mdlPlayer> getRankingPlayers() {
+    public List<mdlPlayer> getPlayers() {
         ObjectMapper objectMapper = new ObjectMapper ();
         List<mdlPlayer> lstMdlPlayer = new ArrayList<>();
 
         URL resource = brkPlayer.class.getClassLoader().getResource( "PlayersDB.json");
-        byte[] bytes = new byte[0];
+        byte[] bytes;
         try {
             bytes = Files.readAllBytes(Paths.get(resource.toURI()));
             String json = new String(bytes);
@@ -60,16 +58,6 @@ public class brkPlayer implements IPlayer {
             e.printStackTrace();
         }
 
-//        return lstMdlPlayer;
-        return fncFilterPlayers(lstMdlPlayer);
-    }
-
-    private List<mdlPlayer> fncFilterPlayers(List<mdlPlayer> lstMdlPlayer){
-        List<mdlPlayer> lstFilteredPlayers = new ArrayList<>();
-
-        lstFilteredPlayers = lstMdlPlayer.stream().sorted(Comparator.comparing(mdlPlayer::getScore).reversed()).collect(Collectors.toList());
-//        lstFilteredPlayers = lstMdlPlayer.stream().filter( player -> player.score == category).collect(Collectors.toList());
-
-        return lstFilteredPlayers;
+        return lstMdlPlayer;
     }
 }
